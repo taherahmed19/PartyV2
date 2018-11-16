@@ -1,4 +1,6 @@
 
+import java.util.Iterator;
+
 /**
  * A simple model of Host.
  *
@@ -7,9 +9,8 @@
  */
 public class Host extends Person {
 
-    /**
-     * Create a new Host.
-     */
+    private Location location;
+
     public Host() {
 
     }
@@ -27,5 +28,12 @@ public class Host extends Person {
     @Override
     public Location getLocation() {
         return this.location;
+    }
+
+    @Override
+    public void act(Field field) {
+        //field.clearLocation(location);
+        Iterator<Location> locations = field.adjacentLocations(location);
+        field.place(this, locations.next());
     }
 }

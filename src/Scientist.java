@@ -1,5 +1,9 @@
 
+import java.util.Iterator;
+
 public class Scientist extends Guest {
+
+    private Location location;
 
     /**
      * Create a scientist.
@@ -17,9 +21,16 @@ public class Scientist extends Guest {
     public void setLocation(Location location) {
         this.location = location;
     }
-    
+
     @Override
-    public Location getLocation(){
+    public Location getLocation() {
         return this.location;
+    }
+
+    @Override
+    public void act(Field field) {
+        field.clearLocation(location);
+        Iterator<Location> locations = field.adjacentLocations(location);
+        
     }
 }

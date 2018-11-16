@@ -74,22 +74,22 @@ public class Simulator {
                 if (0 <= p && p < p1) {
                     Artist artist = new Artist();
                     persons.add(artist);
-                    artist.setLocation(new Location(row,col));
+                    artist.setLocation(new Location(row, col));
                     field.place(artist, row, col);
                 } else if (p1 <= p && p < p2) {
                     Host host = new Host();
                     persons.add(host);
-                    host.setLocation(new Location(row,col));
+                    host.setLocation(new Location(row, col));
                     field.place(host, row, col);
                 } else if (p2 <= p && p < p3) {
                     Scientist scientist = new Scientist();
                     persons.add(scientist);
-                    scientist.setLocation(new Location(row,col));
+                    scientist.setLocation(new Location(row, col));
                     field.place(scientist, row, col);
                 } else if (p3 <= p && p < p4) {
                     Engineer engineer = new Engineer();
                     persons.add(engineer);
-                    engineer.setLocation(new Location(row,col));
+                    engineer.setLocation(new Location(row, col));
                     field.place(engineer, row, col);
                 } else {
                     //Create nothing. Leave the location empty.
@@ -105,9 +105,12 @@ public class Simulator {
     public void simulate(int numSteps) {
         for (int step = 1; step <= numSteps && view.isViable(partyRoom); step++) {
             simulateOneStep(partyRoom);
-            //try{Thread.sleep(200);}catch(Exception e){e.printStackTrace();
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            };
         }
-
     }
 
     /**
@@ -122,14 +125,14 @@ public class Simulator {
             Person person = iter.next();
             person.act();
             location = field.adjacentLocations(person.getLocation()).next();
-            if((field.adjacentLocations(person.getLocation())).hasNext()){
+            if ((field.adjacentLocations(person.getLocation())).hasNext()) {
                 person.setLocation(location);
             }
-            //move persons to a new adjacent location
-
-
+            Field field1 = field.cloneField();
+            person.act(field1);
+            field = field1;
+            
         }
-
     }
 
     public static void main(String[] args) {
@@ -154,7 +157,7 @@ public class Simulator {
         //		view.showStatus(1, partyRoom);
 
         Simulator s = new Simulator(50, 50, 123);
-        s.simulate(10);
+        s.simulate(1000);
     }
 
 }
