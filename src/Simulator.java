@@ -2,7 +2,9 @@
 import java.awt.Color;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  * A simple party simulator, based on a field containing hosts, artists and
@@ -11,7 +13,7 @@ import java.util.Iterator;
  * @author Maria Chli
  * @version 17-10-2007
  */
-public class Simulator {
+public class Simulator implements Runnable{
 
     // The list of persons at the party
     private ArrayList<Person> persons;
@@ -45,6 +47,7 @@ public class Simulator {
 
         // Setup a valid starting point.
         start();
+
     }
 
     public void start() {
@@ -75,21 +78,30 @@ public class Simulator {
                     Artist artist = new Artist();
                     persons.add(artist);
                     artist.setLocation(new Location(row, col));
+                    artist.setSocial(rand.nextBoolean());
+                    artist.setHappiness(rand.nextInt(11));
                     field.place(artist, row, col);
                 } else if (p1 <= p && p < p2) {
                     Host host = new Host();
                     persons.add(host);
                     host.setLocation(new Location(row, col));
+                    host.setSocial(rand.nextBoolean());
+                    //not asked to add happiness to host objects?
+                    //  host.setHappiness(rand.nextInt(11));
                     field.place(host, row, col);
                 } else if (p2 <= p && p < p3) {
                     Scientist scientist = new Scientist();
                     persons.add(scientist);
                     scientist.setLocation(new Location(row, col));
+                    scientist.setSocial(rand.nextBoolean());
+                    scientist.setHappiness(rand.nextInt(11));
                     field.place(scientist, row, col);
                 } else if (p3 <= p && p < p4) {
                     Engineer engineer = new Engineer();
                     persons.add(engineer);
                     engineer.setLocation(new Location(row, col));
+                    engineer.setSocial(rand.nextBoolean());
+                    engineer.setHappiness(rand.nextInt(11));
                     field.place(engineer, row, col);
                 } else {
                     //Create nothing. Leave the location empty.
@@ -103,10 +115,11 @@ public class Simulator {
      * Stop before the given number of steps if it ceases to be viable.
      */
     public void simulate(int numSteps) {
-        for (int step = 1; step <= numSteps && view.isViable(partyRoom); step++) {
+        //   for (int step = -5; step <= numSteps && view.isViable(partyRoom); step++) {
+        for (int i = 0; i < numSteps; i++) {
             simulateOneStep(partyRoom);
             try {
-                Thread.sleep(200);
+                Thread.sleep(500);
             } catch (Exception e) {
                 e.printStackTrace();
             };
@@ -124,15 +137,21 @@ public class Simulator {
         for (Iterator<Person> iter = persons.iterator(); iter.hasNext();) {
             Person person = iter.next();
             person.act();
-            location = field.adjacentLocations(person.getLocation()).next();
-            if ((field.adjacentLocations(person.getLocation())).hasNext()) {
-                person.setLocation(location);
+//            location = field.adjacentLocations(person.getLocation()).next();
+//            if ((field.adjacentLocations(person.getLocation())).hasNext()) {
+//                //   person.setLocation(location);
+//            }
+            person.act(field, persons);
+            view.showStatus(step, field);
+
+            if (person instanceof Guest) {
+                //   Field field2 = field.cloneField();
+                ((Guest) person).moveToBestLocation(field);
+                //field = field2;
+                view.showStatus(step, field);
             }
-            Field field1 = field.cloneField();
-            person.act(field1);
-            field = field1;
-            
         }
+        System.out.println(step);
     }
 
     public static void main(String[] args) {
@@ -156,8 +175,27 @@ public class Simulator {
         //		
         //		view.showStatus(1, partyRoom);
 
-        Simulator s = new Simulator(50, 50, 123);
-        s.simulate(1000);
+        //alert user to enter input
+        SimulatorSetup setup = new SimulatorSetup();
+        //seed must be less than depth / width
+       
+//        if (inputEntered) {
+//            s.simulate(3);
+//        }
+        // 
+    }
+
+    @Override
+    public void run() {
+        simulate(ModelConstants.LENGTH);
     }
 
 }
+
+//        Scanner scan = new Scanner(System.in);
+//        while (!scan.hasNextInt()) {
+//            System.out.println("Input is not a number.");
+//            enterSimulation();
+//            scan.nextLine();
+//        }
+//        int number = scan.nextInt();

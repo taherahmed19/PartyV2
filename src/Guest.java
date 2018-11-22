@@ -1,9 +1,8 @@
 
-import java.util.Iterator;
-
 public abstract class Guest extends Person {
-    protected Location location;
-    protected abstract void act();
-    protected abstract void setLocation(Location location);
-    protected abstract Location getLocation();
+
+    protected int happinessLevel;
+    protected abstract int getHappiness();
+    protected abstract void setHappiness(int level);
+    public abstract void moveToBestLocation(Field field);
 }

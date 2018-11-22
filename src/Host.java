@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -8,8 +9,6 @@ import java.util.Iterator;
  * @version 18-10-2006
  */
 public class Host extends Person {
-
-    private Location location;
 
     public Host() {
 
@@ -31,9 +30,23 @@ public class Host extends Person {
     }
 
     @Override
-    public void act(Field field) {
-        //field.clearLocation(location);
-        Iterator<Location> locations = field.adjacentLocations(location);
-        field.place(this, locations.next());
+    public void act(Field field, ArrayList<Person> persons) {
+        Location location = field.freeAdjacentLocation(this.location);
+        field.clearLocation(this.location);
+
+        this.setLocation(location);
+
+        field.place(this, location);
     }
+
+    @Override
+    public boolean getSocial() {
+        return this.isSocial;
+    }
+
+    @Override
+    public void setSocial(boolean isSocial) {
+        this.isSocial = isSocial;
+    }
+
 }
