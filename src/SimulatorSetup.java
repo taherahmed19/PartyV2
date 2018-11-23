@@ -143,7 +143,6 @@ public class SimulatorSetup {
                         Thread thread = new Thread(new Simulator(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH, ModelConstants.SEED));
                         thread.start();
                         if(thread.isAlive()){
-                            System.out.println("test");
                             frame.hide();
                         }
                     } else {

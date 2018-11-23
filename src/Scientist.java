@@ -57,7 +57,7 @@ public class Scientist extends Guest {
         Person person;
         while (locations.hasNext() &&(person = field.getObjectAt(locations.next())) != null) {
             if (locations != this.location) {
-               if (person.getSocial()) {
+               if (person.getSocial() && person instanceof Scientist || person instanceof Artist) {
                     Location location = field.freeAdjacentLocation(this.location);
                     field.clearLocation(this.location);
 

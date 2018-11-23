@@ -61,7 +61,7 @@ public class Engineer extends Guest {
                     field.clearLocation(this.location);
 
                     this.setLocation(location);
-                    this.setHappiness(happinessLevel);
+                    this.setHappiness(happinessLevel + 1);
                     field.place(this, location);
                 }
             }

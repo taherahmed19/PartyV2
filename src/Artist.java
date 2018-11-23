@@ -55,12 +55,12 @@ public class Artist extends Guest {
         Person person;
         while (locations.hasNext() && (person = field.getObjectAt(locations.next())) != null) {
             if (locations != this.location) {
-                if (person.getSocial()) {
+                if (person.getSocial() && person instanceof Artist || person instanceof Host) {
                     Location location = field.freeAdjacentLocation(this.location);
                     field.clearLocation(this.location);
 
                     this.setLocation(location);
-                    this.setHappiness(happinessLevel);
+                    this.setHappiness(happinessLevel + 1);
                     field.place(this, location);
                 }
             }
