@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 public class Artist extends Guest {
 
-    //  private int happinessLevel;
     public Artist() {
 
     }
@@ -51,26 +50,43 @@ public class Artist extends Guest {
 
     @Override
     public void moveToBestLocation(Field field) {
-        Iterator<Location> locations = field.adjacentLocations(this.location);
+        Location highestHappinessLocation = this.location;
+        int highestHappiness = -1;
+        int counter = 0;
+        Iterator<Location> locations = field.adjacentLocations(this.location, ModelConstants.DISTANCE);
         Person person;
-        while (locations.hasNext() && (person = field.getObjectAt(locations.next())) != null) {
-            if (locations != this.location) {
+        while (locations.hasNext()) {
+            counter = 0;
+            Location currentLocation = locations.next();
+            if ((person = field.getObjectAt(currentLocation)) != null) {
                 if (person.getSocial() && person instanceof Artist || person instanceof Host) {
-                    Location location = field.freeAdjacentLocation(this.location);
-                    field.clearLocation(this.location);
+                    Location location = field.freeAdjacentLocation(currentLocation);
+                    if (location != null) {
+                        Iterator<Location> locations2 = field.adjacentLocations(location, 1);
+                        while (locations2.hasNext()) {
+                            Location cLocation = locations2.next();
+                            if (field.getObjectAt(cLocation) != null) {
+                                counter++;
+                            }
+                        }
+                        if (highestHappiness == -1) {
+                            highestHappiness = counter;
+                            highestHappinessLocation = location;
+                        }
+                        if (counter > highestHappiness) {
+                            highestHappiness = counter;
+                            highestHappinessLocation = location;
+                        }
+                        System.out.println("happiness " + highestHappiness + " " + this.toString());
+                    }
 
-                    this.setLocation(location);
-                    this.setHappiness(happinessLevel + 1);
-                    field.place(this, location);
                 }
             }
         }
+        field.clearLocation(this.location);
+        this.setLocation(highestHappinessLocation);
+        this.setHappiness(highestHappiness);
+        field.place(this, highestHappinessLocation);
     }
-//if (person.getSocial()) {
-//                    Location location = field.freeAdjacentLocation(this.location);
-//                    field.clearLocation(this.location);
-//                    this.setLocation(field.freeAdjacentLocation(this.getLocation()));
-//                    this.setHappiness(this.getHappiness()+1);
-//                    field.place(this, this.location);
-//                }
+
 }

@@ -9,7 +9,7 @@ public class ModelConstants {
     // The default depth of the grid.
     public static int DEFAULT_DEPTH = 50;
     // The "manhattan" radius of the neighbourhood. Used by guests to evaluate potential positions to move to.
-    public static int WINDOW = 10;
+    public static int DISTANCE = 10;
     // The probability that a artist will be created in any given grid position.
     public static double ARTIST_CREATION_PROBABILITY = 0.10;
     // The probability that a host will be created in any given grid position.

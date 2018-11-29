@@ -1,13 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-/**
- * A simple model of Host.
- *
- * @author Maria Chli
- * @version 18-10-2006
- */
 public class Host extends Person {
 
     public Host() {
@@ -32,11 +24,12 @@ public class Host extends Person {
     @Override
     public void act(Field field, ArrayList<Person> persons) {
         Location location = field.freeAdjacentLocation(this.location);
-        field.clearLocation(this.location);
 
-        this.setLocation(location);
-
-        field.place(this, location);
+        if (location != null) {
+            field.clearLocation(this.location);
+            this.setLocation(location);
+            field.place(this, location);
+        }
     }
 
     @Override

@@ -137,10 +137,6 @@ public class Simulator implements Runnable{
         for (Iterator<Person> iter = persons.iterator(); iter.hasNext();) {
             Person person = iter.next();
             person.act();
-//            location = field.adjacentLocations(person.getLocation()).next();
-//            if ((field.adjacentLocations(person.getLocation())).hasNext()) {
-//                //   person.setLocation(location);
-//            }
             person.act(field, persons);
             view.showStatus(step, field);
 
@@ -155,34 +151,11 @@ public class Simulator implements Runnable{
     }
 
     public static void main(String[] args) {
-        //		Host h = new Host();
-        //		Artist a = new Artist();
-        //		Scientist s = new Scientist();
-        //		Engineer e = new Engineer();
-        //		
-        //		Field partyRoom = new Field(50,50);
-        //		SimulatorView view = new SimulatorView(50,50);
-        //		
-        //		view.setColor(Host.class, Color.orange);
-        //		view.setColor(Artist.class, Color.magenta);
-        //		view.setColor(Engineer.class, Color.blue);
-        //		view.setColor(Scientist.class, Color.black);
-        //		
-        //		partyRoom.place(a, 10, 10);
-        //		partyRoom.place(s, 20, 20);
-        //		partyRoom.place(e, 30, 30);
-        //		partyRoom.place(h, 40, 40);
-        //		
-        //		view.showStatus(1, partyRoom);
 
         //alert user to enter input
         SimulatorSetup setup = new SimulatorSetup();
         //seed must be less than depth / width
-       
-//        if (inputEntered) {
-//            s.simulate(3);
-//        }
-        // 
+
     }
 
     @Override

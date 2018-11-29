@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Scientist extends Guest {
-
-    /**
-     * Create a scientist.
-     */
     public Scientist() {
 
     }
@@ -28,7 +24,7 @@ public class Scientist extends Guest {
 
     @Override
     public void act(Field field, ArrayList<Person> persons) {
-        
+
     }
 
     @Override
@@ -41,7 +37,7 @@ public class Scientist extends Guest {
         this.happinessLevel = level;
     }
 
-      @Override
+    @Override
     public boolean getSocial() {
         return this.isSocial;
     }
@@ -51,22 +47,44 @@ public class Scientist extends Guest {
         this.isSocial = isSocial;
     }
 
-   @Override
+    @Override
     public void moveToBestLocation(Field field) {
-        Iterator<Location> locations = field.adjacentLocations(this.location);
+        Location highestHappinessLocation = this.location;
+        int highestHappiness = -1;
+        int counter = 0;
+        Iterator<Location> locations = field.adjacentLocations(this.location, ModelConstants.DISTANCE);
         Person person;
-        while (locations.hasNext() &&(person = field.getObjectAt(locations.next())) != null) {
-            if (locations != this.location) {
-               if (person.getSocial() && person instanceof Scientist || person instanceof Artist) {
-                    Location location = field.freeAdjacentLocation(this.location);
-                    field.clearLocation(this.location);
+        while (locations.hasNext()) {
+            counter = 0;
+            Location currentLocation = locations.next();
+            if ((person = field.getObjectAt(currentLocation)) != null) {
+                if (person.getSocial() && person instanceof Artist || person instanceof Host || person instanceof Scientist) {
+                    Location location = field.freeAdjacentLocation(currentLocation);
+                    if (location != null) {
+                        Iterator<Location> locations2 = field.adjacentLocations(location, 1);
+                        while (locations2.hasNext()) {
+                            Location cLocation = locations2.next();
+                            if (field.getObjectAt(cLocation) != null) {
+                                counter++;
+                            }
+                        }
+                        if (highestHappiness == -1) {
+                            highestHappiness = counter;
+                            highestHappinessLocation = location;
+                        }
+                        if (counter > highestHappiness) {
+                            highestHappiness = counter;
+                            highestHappinessLocation = location;
+                        }
+                        System.out.println("happiness " + highestHappiness + " " + this.toString());
+                    }
 
-                    this.setLocation(location);
-                    this.setHappiness(happinessLevel);
-                    field.place(this, location);
                 }
             }
         }
+        field.clearLocation(this.location);
+        this.setLocation(highestHappinessLocation);
+        this.setHappiness(highestHappiness);
+        field.place(this, highestHappinessLocation);
     }
-
 }

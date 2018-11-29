@@ -1,8 +1,6 @@
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
-import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 
 public class SimulatorSetup {
@@ -139,7 +134,7 @@ public class SimulatorSetup {
                         ModelConstants.SEED = Integer.parseInt(seedTextArea.getText());
                         ModelConstants.DEFAULT_WIDTH = Integer.parseInt(partyWidthTextArea.getText());
                         ModelConstants.DEFAULT_DEPTH = Integer.parseInt(partyHeightTextArea.getText());
-                        ModelConstants.WINDOW = Integer.parseInt(distanceTextArea.getText());
+                        ModelConstants.DISTANCE = Integer.parseInt(distanceTextArea.getText());
                         Thread thread = new Thread(new Simulator(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH, ModelConstants.SEED));
                         thread.start();
                         if(thread.isAlive()){
