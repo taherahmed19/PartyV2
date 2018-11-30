@@ -57,9 +57,11 @@ public class Engineer extends Guest {
         Iterator<Location> locations = field.adjacentLocations(this.location, ModelConstants.DISTANCE);
         Person person;
         while (locations.hasNext()) {
+            //counter is used find the happiness of moving to a certain location maybe discarded if not greater than current value
             counter = 0;
             Location currentLocation = locations.next();
             if ((person = field.getObjectAt(currentLocation)) != null) {
+                //ensures the person is social to move to
                 if (person.getSocial()) {
                     Location location = field.freeAdjacentLocation(currentLocation);
                     if (location != null) {
