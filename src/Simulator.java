@@ -151,10 +151,9 @@ public class Simulator implements Runnable{
     }
 
     public static void main(String[] args) {
-
-        //alert user to enter input
+        
+        //show simulator setup window
         SimulatorSetup setup = new SimulatorSetup();
-        //seed must be less than depth / width
 
     }
 
@@ -162,13 +161,4 @@ public class Simulator implements Runnable{
     public void run() {
         simulate(ModelConstants.LENGTH);
     }
-
 }
-
-//        Scanner scan = new Scanner(System.in);
-//        while (!scan.hasNextInt()) {
-//            System.out.println("Input is not a number.");
-//            enterSimulation();
-//            scan.nextLine();
-//        }
-//        int number = scan.nextInt();

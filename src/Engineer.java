@@ -49,7 +49,7 @@ public class Engineer extends Guest {
 
     }
 
-     @Override
+    @Override
     public void moveToBestLocation(Field field) {
         Location highestHappinessLocation = this.location;
         int highestHappiness = -1;
@@ -64,16 +64,19 @@ public class Engineer extends Guest {
                     Location location = field.freeAdjacentLocation(currentLocation);
                     if (location != null) {
                         Iterator<Location> locations2 = field.adjacentLocations(location, 1);
+                        //loops through adjacent locations trying to find the highest happiness
                         while (locations2.hasNext()) {
                             Location cLocation = locations2.next();
                             if (field.getObjectAt(cLocation) != null) {
                                 counter++;
                             }
                         }
+                        //sets the initial values for highestHappiness and highestHappinessLocation
                         if (highestHappiness == -1) {
                             highestHappiness = counter;
                             highestHappinessLocation = location;
                         }
+                        //if a location with a higher happiness is found update variables
                         if (counter > highestHappiness) {
                             highestHappiness = counter;
                             highestHappinessLocation = location;
@@ -85,7 +88,9 @@ public class Engineer extends Guest {
             }
         }
         field.clearLocation(this.location);
+        //set highesthappiness location if not found it remains in its original position
         this.setLocation(highestHappinessLocation);
+        //after highest happiness has been found set happiness otherwise
         this.setHappiness(highestHappiness);
         field.place(this, highestHappinessLocation);
     }
