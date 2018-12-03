@@ -3,11 +3,11 @@ public class ModelConstants {
     // The simulation length
     public static int LENGTH = 125;
     // The seed for the shared random number generator.
-    public static int SEED = 125;
+    public static int SEED = 40;
     // The default width for the grid.
-    public static int DEFAULT_WIDTH = 50;
+    public static int WIDTH = 50;
     // The default depth of the grid.
-    public static int DEFAULT_DEPTH = 50;
+    public static int DEPTH = 50;
     // The "manhattan" radius of the neighbourhood. Used by guests to evaluate potential positions to move to.
     public static int DISTANCE = 10;
     // The probability that a artist will be created in any given grid position.

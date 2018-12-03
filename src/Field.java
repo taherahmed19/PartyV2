@@ -103,11 +103,9 @@ public class Field
 
 	/**
 	 * Try to find a free location that is adjacent to the
-	 * given location. If there is none, then return the current
-	 * location if it is free. If not, return null.
-	 * The returned location will be within the valid bounds
+	 * passed in location. If there is none, otherwise method will return current location
 	 * of the field.
-	 * @param location The location from which to generate an adjacency.
+	 * @param location The location from which to generate an adjacent location.
 	 * @return A valid location within the grid area. This may be the
 	 *         same object as the location parameter, or null if all
 	 *         locations around are full.

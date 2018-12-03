@@ -1,25 +1,16 @@
 import java.util.HashMap;
 import java.util.Iterator;
 
-/**
- * This class collects and provides some statistical data on the state 
- * of a field. It is flexible: it will create and maintain a counter 
- * for any class of object that is found within the field.
- * 
- * @author David J. Barnes and Michael Kolling
- * @version 2002-04-23
- * @version Ian T. Nabney
- * @version 01-02-2005
- */
+
 public class FieldStats
 {
-    // Counters for each type of entity (host, artist, etc.) in the simulation.
+    // counter for each type of host or guest in the simulation.
     private HashMap<Class, Counter> counters;
-    // Whether the counters are currently up to date.
+    // value to ensure counter is up to date.
     private boolean countsValid;
 
     /**
-     * Construct a field-statistics object.
+     * Contructor for fieldstats - used to create object of this.
      */
     public FieldStats()
     {
@@ -30,7 +21,7 @@ public class FieldStats
     }
 
     /**
-     * @return A string describing what persons are in the field.
+     * @return A string describing who is in the field.
      */
     public String getPopulationDetails(Field field)
     {

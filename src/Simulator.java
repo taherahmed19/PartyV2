@@ -2,18 +2,9 @@
 import java.awt.Color;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Iterator;
-import java.util.Scanner;
 
-/**
- * A simple party simulator, based on a field containing hosts, artists and
- * other persons
- *
- * @author Maria Chli
- * @version 17-10-2007
- */
-public class Simulator implements Runnable{
+public class Simulator implements Runnable {
 
     // The list of persons at the party
     private ArrayList<Person> persons;
@@ -29,12 +20,12 @@ public class Simulator implements Runnable{
         if (width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
-            depth = ModelConstants.DEFAULT_DEPTH;
-            width = ModelConstants.DEFAULT_WIDTH;
+            depth = ModelConstants.DEPTH;
+            width = ModelConstants.WIDTH;
         }
         persons = new ArrayList<Person>();
         partyRoom = new Field(depth, width);
-        view = new SimulatorView(depth, width);
+        //view = new SimulatorView(depth, width);
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
@@ -62,6 +53,7 @@ public class Simulator implements Runnable{
 
     /**
      * Populate the field with persons
+     * @param  field to interact with
      */
     private void populate(Field field) {
         double p1 = ModelConstants.ARTIST_CREATION_PROBABILITY;
@@ -79,7 +71,6 @@ public class Simulator implements Runnable{
                     persons.add(artist);
                     artist.setLocation(new Location(row, col));
                     artist.setSocial(rand.nextBoolean());
-                    artist.setHappiness(rand.nextInt(11));
                     field.place(artist, row, col);
                 } else if (p1 <= p && p < p2) {
                     Host host = new Host();
@@ -87,21 +78,18 @@ public class Simulator implements Runnable{
                     host.setLocation(new Location(row, col));
                     host.setSocial(rand.nextBoolean());
                     //not asked to add happiness to host objects?
-                    //  host.setHappiness(rand.nextInt(11));
                     field.place(host, row, col);
                 } else if (p2 <= p && p < p3) {
                     Scientist scientist = new Scientist();
                     persons.add(scientist);
                     scientist.setLocation(new Location(row, col));
                     scientist.setSocial(rand.nextBoolean());
-                    scientist.setHappiness(rand.nextInt(11));
                     field.place(scientist, row, col);
                 } else if (p3 <= p && p < p4) {
                     Engineer engineer = new Engineer();
                     persons.add(engineer);
                     engineer.setLocation(new Location(row, col));
                     engineer.setSocial(rand.nextBoolean());
-                    engineer.setHappiness(rand.nextInt(11));
                     field.place(engineer, row, col);
                 } else {
                     //Create nothing. Leave the location empty.
@@ -132,17 +120,18 @@ public class Simulator implements Runnable{
      */
     public void simulateOneStep(Field field) {
         step++;
-        Location location;
         // let all persons act
         for (Iterator<Person> iter = persons.iterator(); iter.hasNext();) {
             Person person = iter.next();
             person.act();
-            person.act(field, persons);
+            if (person instanceof Host) {
+                ((Host) person).act(field);
+            }
             view.showStatus(step, field);
 
             if (person instanceof Guest) {
                 //   Field field2 = field.cloneField();
-                ((Guest) person).moveToBestLocation(field);
+                ((Guest) person).moveToBestLocation(field, (Guest) person);
                 //field = field2;
                 view.showStatus(step, field);
             }
@@ -151,7 +140,7 @@ public class Simulator implements Runnable{
     }
 
     public static void main(String[] args) {
-        
+
         //show simulator setup window
         SimulatorSetup setup = new SimulatorSetup();
 

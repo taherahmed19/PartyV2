@@ -1,26 +1,21 @@
 
 import java.util.ArrayList;
 
-
-/**
- * A simple model of a person in the simulation.
- *
- * @author Maria Chli
- * @version 18-10-2006
- */
 public abstract class Person {
-
+    //each person (host,guest) has a location store in this
     protected Location location;
 
-    protected abstract void act(Field field, ArrayList<Person> person);
-
+    //each person should act ie print out who they are 
     protected abstract void act();
-
+    //each person should set their location 
     protected abstract void setLocation(Location location);
-
+    //used to get each person's location
     protected abstract Location getLocation();
-    
+    //each person is social or not
     protected boolean isSocial;
-    public abstract boolean getSocial();
-    public abstract void setSocial(boolean isSocial);
+    //return person social 
+    protected abstract boolean getSocial();
+    //set person to be social or not
+    protected abstract void setSocial(boolean isSocial);
+
 }
