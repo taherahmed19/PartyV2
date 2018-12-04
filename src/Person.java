@@ -10,11 +10,5 @@ public abstract class Person {
     protected abstract void setLocation(Location location);
     //used to get each person's location
     protected abstract Location getLocation();
-    //each person is social or not
-    protected boolean isSocial;
-    //return person social 
-    protected abstract boolean getSocial();
-    //set person to be social or not
-    protected abstract void setSocial(boolean isSocial);
 
 }

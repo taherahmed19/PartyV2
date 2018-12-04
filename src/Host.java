@@ -45,8 +45,8 @@ public class Host extends Person {
         Location location = null;
         //loop through location at specific distance
         while (adjacentLocations.hasNext()) {
-            Location currentLocation = adjacentLocations.next();
-            location = field.freeAdjacentLocation(currentLocation);
+            Location adjacentLocation = adjacentLocations.next();
+            location = field.freeAdjacentLocation(adjacentLocation);
 
             //block of if statements ensures hosts dont move from right to left and bottom to top
             if (location != null && this.location.getRow() <= ModelConstants.DEPTH - 1 && location.getRow() >= 0
@@ -91,23 +91,7 @@ public class Host extends Person {
         }
     }
 
-    /**
-    *get if host is social
-    *@return if host is social
-     */
-    @Override
-    public boolean getSocial() {
-        return this.isSocial;
-    }
-
-    /**
-    *used to set host to social or not
-    *@param random boolean value to set social to true or false
-     */
-    @Override
-    public void setSocial(boolean isSocial) {
-        this.isSocial = isSocial;
-    }
+   
 
 
 }

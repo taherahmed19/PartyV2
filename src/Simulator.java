@@ -76,26 +76,21 @@ public class Simulator implements Runnable {
                     Artist artist = new Artist();
                     persons.add(artist);
                     artist.setLocation(new Location(row, col));
-                    artist.setSocial(rand.nextBoolean());
                     field.place(artist, row, col);
                 } else if (p1 <= p && p < p2) {
                     Host host = new Host();
                     persons.add(host);
                     host.setLocation(new Location(row, col));
-                    host.setSocial(rand.nextBoolean());
-                    //not asked to add happiness to host objects?
                     field.place(host, row, col);
                 } else if (p2 <= p && p < p3) {
                     Scientist scientist = new Scientist();
                     persons.add(scientist);
                     scientist.setLocation(new Location(row, col));
-                    scientist.setSocial(rand.nextBoolean());
                     field.place(scientist, row, col);
                 } else if (p3 <= p && p < p4) {
                     Engineer engineer = new Engineer();
                     persons.add(engineer);
                     engineer.setLocation(new Location(row, col));
-                    engineer.setSocial(rand.nextBoolean());
                     field.place(engineer, row, col);
                 } else {
                     //Create nothing. Leave the location empty.
@@ -107,6 +102,7 @@ public class Simulator implements Runnable {
     /**
      * Run the simulation from its current state for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
+     * @param steps to run the simulation for
      */
     public void simulate(int numSteps) {
         //   for (int step = -5; step <= numSteps && view.isViable(partyRoom); step++) {
@@ -123,6 +119,7 @@ public class Simulator implements Runnable {
     /**
      * Run the simulation from its current state for a single step. Iterate over
      * the whole field updating the state of each person.
+     * @param field to interact with
      */
     public void simulateOneStep(Field field) {
         step++;
