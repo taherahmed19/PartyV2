@@ -1,46 +1,44 @@
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Host extends Person {
 
-    /*
-        Construtctor to create host object
+    /**
+    *Constructor to create host object
      */
     public Host() {
         super();
     }
 
-    /*
-    override super class method as print statement specific for this object
+    /**
+    *override super class method as print statement specific for this object
      */
     @Override
     public void act() {
         System.out.println("I'm here: Host");
     }
 
-    /*
-        used to set host location
-        @param location to set host to
+    /**
+    *used to set host location
+    *@param location to set host to
      */
     @Override
     public void setLocation(Location location) {
         this.location = location;
     }
 
-    /*
-        @return get the current location of host
+    /**
+    *@return get the current location of host
      */
     @Override
     public Location getLocation() {
         return this.location;
     }
 
-    /*
-        method used to move host to adjacent free location
-        @param field to interact with 
-     */
-    
+    /**
+    *method used to move host to adjacent free location
+    *@param field to interact with 
+    */
     public void act(Field field) {
         //get locations from current with certain distance
         Iterator<Location> adjacentLocations = field.adjacentLocations(this.location, ModelConstants.DISTANCE);
@@ -93,18 +91,18 @@ public class Host extends Person {
         }
     }
 
-    /*
-        get if host is social
-        @return if host is social
+    /**
+    *get if host is social
+    *@return if host is social
      */
     @Override
     public boolean getSocial() {
         return this.isSocial;
     }
 
-    /*
-        used to set host to social or not
-        @param random boolean value to set social to true or false
+    /**
+    *used to set host to social or not
+    *@param random boolean value to set social to true or false
      */
     @Override
     public void setSocial(boolean isSocial) {

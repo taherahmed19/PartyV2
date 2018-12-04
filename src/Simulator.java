@@ -14,7 +14,13 @@ public class Simulator implements Runnable {
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
-
+    
+    /**
+     * constructor for simulator 
+     * @param depth depth of field
+     * @param width width of field
+     * @param seed random seed
+     */
     public Simulator(int depth, int width, int seed) {
 
         if (width <= 0 || depth <= 0) {
@@ -145,7 +151,8 @@ public class Simulator implements Runnable {
         SimulatorSetup setup = new SimulatorSetup();
 
     }
-
+    
+    //method to run in new thread
     @Override
     public void run() {
         simulate(ModelConstants.LENGTH);

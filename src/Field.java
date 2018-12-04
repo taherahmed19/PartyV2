@@ -3,14 +3,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
-/**
- * Represent a rectangular grid of field positions.
- * Each position is able to store a single person.
- * 
- * @author David J. Barnes and Michael Kolling
- * @author Maria Chli
- * @version 18-Oct-2006
- */
+
 public class Field
 {
 	// The depth and width of the field.

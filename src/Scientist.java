@@ -4,8 +4,8 @@
  */
 public class Scientist extends Guest {
 
-    /*
-        Construtctor to create scientist object
+    /**
+    *Constructor to create scientist object
      */
     public Scientist() {
         super();

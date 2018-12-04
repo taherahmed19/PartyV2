@@ -11,25 +11,25 @@ public class Guest extends Person {
     //stores happinessLevel
     protected int happinessLevel;
     
-    /*
-        @return the happiness of the guest
+    /**
+    *@return the happiness of the guest 
     */
     protected int getHappiness() {
         return happinessLevel;
     }
     
-    /*
-        set the guests level
-        @Param new level to set to guest
+    /**
+    *set the guests level
+    *@Param new level to set to guest
     */
     protected void setHappiness(int level) {
         this.happinessLevel = level;
     }
-    /*
-        find happier location for the guest
-        method ensures each type of guest does not need to override method as they need to check for other specfic guests
-        @param field the field of the party
-        @param the guest to move
+    /**
+    *find happier location for the guest
+    *method ensures each type of guest does not need to override method as they need to check for other specfic guests
+    *@param field the field of the party
+    *@param the guest to move
     */
     protected void moveToBestLocation(Field field, Guest guest) {
         //current happiest location equals current as unmoved
@@ -111,10 +111,10 @@ public class Guest extends Person {
         field.place(guest, highestHappinessLocation);
     }
 
-    /*
-        ensures guests interact with other guests they like to socialise with
-        @param the current person check others to socialise with
-        @return boolean values true if guests favourable are found 
+    /**
+    *ensures guests interact with other guests they like to socialise with
+    *@param the current person check others to socialise with
+    *@return boolean values true if guests favourable are found 
     */
     protected boolean checkArtistSurrondings(Person person) {
         if (person instanceof Artist || person instanceof Host) {
@@ -122,10 +122,10 @@ public class Guest extends Person {
         }
         return false;
     }
-     /*
-        ensures guests interact with other guests they like to socialise with
-        @param the current person check others to socialise with
-        @return boolean values true if guests favourable are found 
+     /**
+     *ensures guests interact with other guests they like to socialise with
+     *@param the current person check others to socialise with
+     *@return boolean values true if guests favourable are found 
     */
     protected boolean checkEngineerSurrondings(Person person) {
         if (person instanceof Artist || person instanceof Host || person instanceof Scientist
@@ -134,10 +134,10 @@ public class Guest extends Person {
         }
         return false;
     }
-     /*
-        ensures guests interact with other guests they like to socialise with
-        @param the current person check others to socialise with
-        @return boolean values true if guests favourable are found 
+     /**
+     *ensures guests interact with other guests they like to socialise with
+     *@param the current person check others to socialise with
+     *@return boolean values true if guests favourable are found 
     */
     protected boolean checkScientistSurrondings(Person person) {
         if (person instanceof Artist || person instanceof Host || person instanceof Scientist) {
@@ -150,30 +150,30 @@ public class Guest extends Person {
     protected void act() {
     }
     
-    /*
-        @param location to set the new location of the guest
+    /**
+    *@param location to set the new location of the guest
     */
     @Override
     protected void setLocation(Location location) {
         this.location = location;
     }
-    /*
-        @return current location of the guest
+    /**
+    *@return current location of the guest
     */
     @Override
     protected Location getLocation() {
         return this.location;
     }
-    /*
-        @return if the guest is social or not true if yes else false
+    /**
+    *@return if the guest is social or not true if yes else false
     */
     @Override
     protected boolean getSocial() {
         return this.isSocial;
     }
     
-    /*
-        @param random boolean value to set the guest
+    /**
+    *@param random boolean value to set the guest
     */
     @Override
     protected void setSocial(boolean isSocial) {

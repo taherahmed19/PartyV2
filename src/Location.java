@@ -1,9 +1,4 @@
-/**
- * Represent a location in a rectangular grid.
- * 
- * @author David J. Barnes and Michael Kolling
- * @version 2002-04-09
- */
+
 public class Location
 {
     // Row and column positions.

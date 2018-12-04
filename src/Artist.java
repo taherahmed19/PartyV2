@@ -4,8 +4,8 @@
 */
 public class Artist extends Guest {
     
-    /*
-        Construtctor to create artist object
+    /**
+    *  Construtctor to create artist object
     */
     public Artist() {
         super();

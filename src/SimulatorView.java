@@ -4,19 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.HashMap;
 
-/**
- * A graphical view of the simulation grid. The view displays a colored
- * rectangle for each location representing its contents. It uses a default
- * background color. Colors for each type of species can be defined using the
- * setColor method.
- *
- * (ITN) modified so that when window is closed the application terminates.
- *
- * @author David J. Barnes and Michael Kolling
- * @version 2002-04-23
- * @author Ian T. Nabney
- * @version 02-02-2005
- */
+
 public class SimulatorView extends JFrame {
 
     static final long serialVersionUID = -3018063635072997091L;

@@ -200,7 +200,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             hostInput = false;
         }
         try {
@@ -213,7 +213,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             artistInput = false;
         }
         try {
@@ -226,7 +226,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             scientistInput = false;
         }
         try {
@@ -239,7 +239,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             engineerInput = false;
         }
         try {
@@ -252,7 +252,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             lengthInput = false;
         }
         try {
@@ -265,7 +265,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             seedInput = false;
         }
         try {
@@ -278,7 +278,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             widthInput = false;
         }
         try {
@@ -291,7 +291,7 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             depthInput = false;
         }
         try {
@@ -304,13 +304,13 @@ public class SimulatorSetup {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Not an INT or Double");
+            JOptionPane.showMessageDialog(null, "Invalid value");
             distanceInput = false;
         }
 
     }
     /**
-     * starts the simulation
+     * starts the simulation in new thread
      */
     public void startThread() {
         Thread thread = new Thread(new Simulator(ModelConstants.DEPTH, ModelConstants.WIDTH, ModelConstants.SEED));

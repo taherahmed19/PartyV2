@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 
 public abstract class Person {
     //each person (host,guest) has a location store in this
