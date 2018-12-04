@@ -1,7 +1,7 @@
 
 public class ModelConstants {
     // The simulation length
-    public static int LENGTH = 10;
+    public static int LENGTH = 5;
     // The seed for the shared random number generator.
     public static int SEED = 40;
     // The default width for the grid.
@@ -17,7 +17,7 @@ public class ModelConstants {
     // The probability that a host will be created in any given grid position.
     public static double HOST_CREATION_PROBABILITY = 0.15;
     // The probability that a scientist will be created in any given grid position.
-    public static double SCIENTIST_CREATION_PROBABILITY = 0.05;
+    public static double SCIENTIST_CREATION_PROBABILITY = 0.10;
     // The probability that as engineer will be created in any given grid position.
-    public static double ENGINEER_CREATION_PROBABILITY = 0.05;
+    public static double ENGINEER_CREATION_PROBABILITY = 0.10;
 }

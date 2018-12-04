@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Guest extends Person {
@@ -20,16 +19,16 @@ public class Guest extends Person {
     
     /**
     *set the guests level
-    *@Param new level to set to guest
+    *@Param level to set to guest
     */
     protected void setHappiness(int level) {
         this.happinessLevel = level;
     }
     /**
     *find happier location for the guest
-    *method ensures each type of guest does not need to override method as they need to check for other specfic guests
+    *method ensures each type of guest does not need to override method as they need to check for other specific guests
     *@param field the field of the party
-    *@param the guest to move
+    *@param guest to move
     */
     protected void moveToBestLocation(Field field, Guest guest) {
         //current happiest location equals current as unmoved
@@ -113,7 +112,7 @@ public class Guest extends Person {
 
     /**
     *ensures guests interact with other guests they like to socialise with
-    *@param the current person check others to socialise with
+    *@param person check others to socialise with
     *@return boolean values true if guests favourable are found 
     */
     protected boolean checkArtistSurrondings(Person person) {
@@ -124,7 +123,7 @@ public class Guest extends Person {
     }
      /**
      *ensures guests interact with other guests they like to socialise with
-     *@param the current person check others to socialise with
+     *@param person check others to socialise with
      *@return boolean values true if guests favourable are found 
     */
     protected boolean checkEngineerSurrondings(Person person) {
@@ -165,15 +164,3 @@ public class Guest extends Person {
         return this.location;
     }
 }
-//                        if (cLocation != null && guest.location.getRow() == ModelConstants.DEPTH - 1 && cLocation.getRow() != 0) {
-//                            System.out.println("current Row" + guest.location.getRow() + " new " + cLocation.getRow());
-//                        }
-//                        if (cLocation != null && guest.location.getCol() == ModelConstants.WIDTH - 1 && cLocation.getCol() != 0) {
-//                            System.out.println("current Col" + guest.location.getCol() + " new " + cLocation.getCol());
-//                        }
-//                        if (cLocation != null && guest.location.getRow() == 0) {
-//                            System.out.println("current Row " + guest.location.getRow() + " new " + cLocation.getRow());
-//                        }
-//                        if (cLocation != null && guest.location.getCol() == 0) {
-//                            System.out.println("current Col " + guest.location.getCol() + " new " + cLocation.getCol());
-//                        } 

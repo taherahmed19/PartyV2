@@ -70,18 +70,6 @@ public class Host extends Person {
             }
 
         }
-//        if(this.location.getRow() <= ModelConstants.DEPTH-1 && this.location.getRow() > 0 ){
-//            System.out.println("current Row" + this.location.getRow() + " new " + location.getRow() );
-//        }
-//        if(this.location.getCol()<= ModelConstants.WIDTH-1 && this.location.getCol() > 0){
-//            System.out.println("current Col" + this.location.getCol()+ " new " + location.getCol());
-//        }
-//        if(this.location.getRow() == 0){
-//            System.out.println("current Row " + this.location.getRow() + " new " + location.getRow() );
-//        }
-//        if(this.location.getCol()== 0){
-//            System.out.println("current Col " + this.location.getCol()+ " new " + location.getCol());
-//        }
         if (location != null) {
             //clear host location - prevent duplication
             field.clearLocation(this.location);

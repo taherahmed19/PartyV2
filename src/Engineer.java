@@ -5,7 +5,7 @@
 */
 public class Engineer extends Guest {
     /**
-    *    Construtctor to create engineer object
+    *    Constructor to create engineer object
     */
     public Engineer() {
         super();

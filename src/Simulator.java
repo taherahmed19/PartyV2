@@ -14,9 +14,10 @@ public class Simulator implements Runnable {
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
-    
+
     /**
-     * constructor for simulator 
+     * constructor for simulator
+     *
      * @param depth depth of field
      * @param width width of field
      * @param seed random seed
@@ -24,10 +25,7 @@ public class Simulator implements Runnable {
     public Simulator(int depth, int width, int seed) {
 
         if (width <= 0 || depth <= 0) {
-            System.out.println("The dimensions must be greater than zero.");
-            System.out.println("Using default values.");
-            depth = ModelConstants.DEPTH;
-            width = ModelConstants.WIDTH;
+            System.out.println("Invalid input.");
         }
         persons = new ArrayList<Person>();
         partyRoom = new Field(depth, width);
@@ -42,24 +40,24 @@ public class Simulator implements Runnable {
 
         RandomGenerator.initialiseWithSeed(seed);
 
-        // Setup a valid starting point.
+        // setup initial field.
         start();
 
     }
 
     public void start() {
         step = 0;
-
         partyRoom.clear();
+        //add persons to field
         populate(partyRoom);
-
-        // Show the starting state in the view.
+        // Show the state of the view.
         view.showStatus(step, partyRoom);
     }
 
     /**
      * Populate the field with persons
-     * @param  field to interact with
+     *
+     * @param field to interact with
      */
     private void populate(Field field) {
         double p1 = ModelConstants.ARTIST_CREATION_PROBABILITY;
@@ -102,15 +100,16 @@ public class Simulator implements Runnable {
     /**
      * Run the simulation from its current state for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
+     *
      * @param steps to run the simulation for
      */
     public void simulate(int numSteps) {
-        //   for (int step = -5; step <= numSteps && view.isViable(partyRoom); step++) {
         for (int i = 0; i < numSteps; i++) {
             simulateOneStep(partyRoom);
+            //allows the movements of hosts and guests to be viewed
             try {
-                Thread.sleep(500);
-            } catch (Exception e) {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             };
         }
@@ -119,13 +118,14 @@ public class Simulator implements Runnable {
     /**
      * Run the simulation from its current state for a single step. Iterate over
      * the whole field updating the state of each person.
+     *
      * @param field to interact with
      */
     public void simulateOneStep(Field field) {
         step++;
-        // let all persons act
         for (Iterator<Person> iter = persons.iterator(); iter.hasNext();) {
             Person person = iter.next();
+            // Output who the person is
             person.act();
             if (person instanceof Host) {
                 ((Host) person).act(field);
@@ -148,7 +148,7 @@ public class Simulator implements Runnable {
         SimulatorSetup setup = new SimulatorSetup();
 
     }
-    
+
     //method to run in new thread
     @Override
     public void run() {
